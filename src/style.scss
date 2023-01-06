@@ -2,7 +2,7 @@ form{
     display: grid;
 }
 
-div.head{
+div.head, div.task{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;

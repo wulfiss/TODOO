@@ -106,43 +106,43 @@ const showTask = () => {
 
   divMainTask.appendChild(divHead);
 
-  const showTaskDiv = (arr) => {
-    for(let i = 0; i < arr.length; i+=1){
-      const divTask = createEl('', 'task', 'div', 'task');
-
-      const checkBox = document.createElement('input');
-      checkBox.setAttribute('type', 'checkbox');
-      checkBox.classList.add(`checkBox`);
-      checkBox.setAttribute('id', 'checkBox');
-
-      const divTitleShow = createEl('', 'task', 'div', 'tasks');
-      divTitleShow.textContent = arr[i].taskTitle;
-      const divDateShow = createEl('', 'task', 'div', 'tasks');
-      divDateShow.textContent = arr[i].taskDueDate;
-      const divPriorityShow = createEl('', 'task', 'div', 'tasks');
-      divPriorityShow.textContent = arr[i].taskPriority
-      const divBtnShow = btnCreator('btnDelete','btnDelete','X');
-
-      divTask.appendChild(checkBox);
-      divTask.appendChild(divTitleShow);
-      divTask.appendChild(divDateShow);
-      divTask.appendChild(divPriorityShow);
-      divTask.appendChild(divBtnShow);
-    }
-  }
-
-  const readJson = () => {
+  const showTaskDiv = () => {
     const arrJson = JSON.parse(localStorage.getItem('arrTask'));
-    const text = 'No Task were added';
+    const divTaskTest = createEl('', 'tasks', 'div', 'tasks');
 
     if(arrJson){
-      return showTaskDiv(arrJson);
+      for(let i = 0; i < arrJson.length; i+=1){
+        const divTask = createEl('', 'task', 'div', 'task');
+
+        const checkBox = document.createElement('input');
+        checkBox.setAttribute('type', 'checkbox');
+        checkBox.classList.add(`checkBox`);
+        checkBox.setAttribute('id', 'checkBox');
+
+        const divTitleShow = createEl('', 'task', 'div', 'tasks');
+        divTitleShow.textContent = arrJson[i].taskTitle;
+        const divDateShow = createEl('', 'task', 'div', 'tasks');
+        divDateShow.textContent = arrJson[i].taskDueDate;
+        const divPriorityShow = createEl('', 'task', 'div', 'tasks');
+        divPriorityShow.textContent = arrJson[i].taskPriority
+        const divBtnShow = btnCreator('btnDelete','btnDelete','X');
+
+        divTask.appendChild(checkBox);
+        divTask.appendChild(divTitleShow);
+        divTask.appendChild(divDateShow);
+        divTask.appendChild(divPriorityShow);
+        divTask.appendChild(divBtnShow);
+
+        divTaskTest.appendChild(divTask);
+      }
+    }else{
+      divTaskTest.textContent('lalala');
     }
-    return text;
 
-  };
+    return divTaskTest;
+  }
 
-  divMainTask.appendChild(readJson());
+  divMainTask.appendChild(showTaskDiv());
 
   return divMainTask;
 }
