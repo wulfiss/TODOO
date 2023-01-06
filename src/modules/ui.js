@@ -80,13 +80,7 @@ const userForm = () => {
 
   return form;
 }
-/*
-const readJson = () => {
-  const arrJson = JSON.parse(localStorage.getItem('arrTask'));
-  const text = 'No Task were added';
 
-};
-*/
 const showTask = () => {
 
   const divMainTask = createEl('','divMainTask', 'div', 'tableTask');
@@ -99,7 +93,7 @@ const showTask = () => {
   const deleteHead = createEl('', 'divDelete', 'div', 'header');
 
   completeHead.textContent = 'Complete';
-  titleHead.textContent = 'Title';
+  titleHead.textContent = 'Task';
   dueDateHead.textContent = 'Due Date';
   priorityHead.textContent = 'Priority';
   deleteHead.textContent = 'Delete';
@@ -111,6 +105,44 @@ const showTask = () => {
   divHead.appendChild(deleteHead);
 
   divMainTask.appendChild(divHead);
+
+  const showTaskDiv = (arr) => {
+    for(let i = 0; i < arr.length; i+=1){
+      const divTask = createEl('', 'task', 'div', 'task');
+
+      const checkBox = document.createElement('input');
+      checkBox.setAttribute('type', 'checkbox');
+      checkBox.classList.add(`checkBox`);
+      checkBox.setAttribute('id', 'checkBox');
+
+      const divTitleShow = createEl('', 'task', 'div', 'tasks');
+      divTitleShow.textContent = arr[i].taskTitle;
+      const divDateShow = createEl('', 'task', 'div', 'tasks');
+      divDateShow.textContent = arr[i].taskDueDate;
+      const divPriorityShow = createEl('', 'task', 'div', 'tasks');
+      divPriorityShow.textContent = arr[i].taskPriority
+      const divBtnShow = btnCreator('btnDelete','btnDelete','X');
+
+      divTask.appendChild(checkBox);
+      divTask.appendChild(divTitleShow);
+      divTask.appendChild(divDateShow);
+      divTask.appendChild(divPriorityShow);
+      divTask.appendChild(divBtnShow);
+    }
+  }
+
+  const readJson = () => {
+    const arrJson = JSON.parse(localStorage.getItem('arrTask'));
+    const text = 'No Task were added';
+
+    if(arrJson){
+      return showTaskDiv(arrJson);
+    }
+    return text;
+
+  };
+
+  divMainTask.appendChild(readJson());
 
   return divMainTask;
 }
