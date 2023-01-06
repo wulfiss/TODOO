@@ -3,11 +3,26 @@ const Tasks = (title, dueDate, priority) => {
   const taskDueDate = dueDate;
   const taskPriority = priority;
 
-
   return{
     taskTitle, taskDueDate, taskPriority,
   }
 }
+
+// check if exist data in the local storage, if true, add new task to the existing object, if false, create a new array
+const arrToJson = (task) => {
+  let arrJson = JSON.parse(localStorage.getItem('arrTask'));
+
+  if(arrJson){
+    arrJson.push(task);
+  }else{
+    arrJson = [];
+    arrJson.push(task);
+  }
+
+  localStorage.clear();
+
+  return localStorage.setItem('arrTask', JSON.stringify(arrJson));
+};
 
 const addTask = () => {
   const btnAdd = document.querySelector('#btnAdd');
@@ -22,12 +37,11 @@ const addTask = () => {
     }
   }
 
+
   btnAdd.addEventListener('click', (e) => {
     const newTask = Tasks(infoTask().taskTitle,infoTask().taskDate, infoTask().taskPriority);
-
-    console.log(newTask);
+    arrToJson(newTask);
   })
-
 
 };
 
