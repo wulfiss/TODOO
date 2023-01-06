@@ -1,5 +1,5 @@
 import './style.scss';
 
-const lala = 'lalala';
+const lala = 'What a shit';
 
 console.log(lala);
