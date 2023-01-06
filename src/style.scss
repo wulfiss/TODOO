@@ -1,3 +1,9 @@
 form{
     display: grid;
 }
+
+div.head{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+}

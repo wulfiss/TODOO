@@ -1,10 +1,12 @@
-const Tasks = (title, dueDate, priority) => {
+
+const Tasks = (title, dueDate, priority, complete) => {
   const taskTitle =  title;
   const taskDueDate = dueDate;
   const taskPriority = priority;
+  const taskComplete = complete;
 
   return{
-    taskTitle, taskDueDate, taskPriority,
+    taskTitle, taskDueDate, taskPriority, taskComplete
   }
 }
 

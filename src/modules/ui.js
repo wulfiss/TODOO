@@ -1,9 +1,10 @@
 // Helper for element constructors
 
-function createEl(type, id, format){
+function createEl(type, id, format, elClass){
   const tempInput = document.createElement(`${format}`);
   tempInput.setAttribute('type', `${type}`);
   tempInput.setAttribute('id', `${id}`);
+  tempInput.classList.add(`${elClass}`);
 
   return tempInput;
 }
@@ -21,7 +22,7 @@ function btnCreator(id, btnClass, text){
   const btn = document.createElement('button');
   btn.setAttribute('type', `button`);
   btn.setAttribute('id', `${id}`);
-  btn.setAttribute('class', `${btnClass}`);
+  btn.classList.add(`${btnClass}`);
   const txt = document.createTextNode(text);
   btn.appendChild(txt);
 
@@ -58,7 +59,7 @@ const userForm = () => {
 
   const optArr = ['Low', 'Medium', 'High'];
 
-  for(let i = 0; i < optArr.length; i++){
+  for(let i = 0; i < optArr.length; i+=1){
     const options = createEl('option','', 'option');
     options.value = optArr[i];
     options.id = optArr[i];
@@ -79,6 +80,40 @@ const userForm = () => {
 
   return form;
 }
+/*
+const readJson = () => {
+  const arrJson = JSON.parse(localStorage.getItem('arrTask'));
+  const text = 'No Task were added';
 
-export default userForm;
+};
+*/
+const showTask = () => {
+
+  const divMainTask = createEl('','divMainTask', 'div', 'tableTask');
+
+  const divHead = createEl('', 'divHead', 'div', 'head');
+  const completeHead = createEl('', 'divComplete', 'div', 'header');
+  const titleHead = createEl('', 'divTitle', 'div', 'header');
+  const dueDateHead = createEl('', 'divDueDate', 'div', 'header');
+  const priorityHead = createEl('', 'divPriority', 'div', 'header');
+  const deleteHead = createEl('', 'divDelete', 'div', 'header');
+
+  completeHead.textContent = 'Complete';
+  titleHead.textContent = 'Title';
+  dueDateHead.textContent = 'Due Date';
+  priorityHead.textContent = 'Priority';
+  deleteHead.textContent = 'Delete';
+
+  divHead.appendChild(completeHead);
+  divHead.appendChild(titleHead);
+  divHead.appendChild(dueDateHead);
+  divHead.appendChild(priorityHead);
+  divHead.appendChild(deleteHead);
+
+  divMainTask.appendChild(divHead);
+
+  return divMainTask;
+}
+
+export { userForm, showTask };
 
