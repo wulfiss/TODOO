@@ -136,7 +136,8 @@ const showTask = () => {
         divTaskTest.appendChild(divTask);
       }
     }else{
-      divTaskTest.textContent('lalala');
+      const txt = document.createTextNode('NO TASK');
+      divTaskTest.appendChild(txt);
     }
 
     return divTaskTest;

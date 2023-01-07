@@ -1,3 +1,4 @@
+import { showTask } from "./ui";
 
 const Tasks = (title, dueDate, priority, complete) => {
   const taskTitle =  title;
@@ -28,6 +29,8 @@ const arrToJson = (task) => {
 
 const addTask = () => {
   const btnAdd = document.querySelector('#btnAdd');
+  const body = document.querySelector('body');
+  const divMainTask = document.querySelector('#divMainTask');
 
   const infoTask = () => {
     const taskTitle = document.querySelector('#inputTitle').value;
@@ -43,6 +46,9 @@ const addTask = () => {
   btnAdd.addEventListener('click', (e) => {
     const newTask = Tasks(infoTask().taskTitle,infoTask().taskDate, infoTask().taskPriority);
     arrToJson(newTask);
+
+    body.removeChild(divMainTask);
+    body.appendChild(showTask());
   })
 
 };

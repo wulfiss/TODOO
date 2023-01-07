@@ -7,7 +7,8 @@ const body = document.querySelector('body');
 body.appendChild(userForm());
 body.appendChild(showTask());
 
-addTask();
+addTask()
+
 const lala = 'What a shit';
 
 
