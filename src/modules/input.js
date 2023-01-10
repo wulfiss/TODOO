@@ -1,12 +1,30 @@
-const input = () => {
-  const form = document.querySelector('form');
+const BTN = () => {
   const $showForm = document.querySelector('#btnShowForm');
-  const lals = document.querySelector('kakaka');
+  const $btnAdd = document.querySelector('#btnAdd');
 
   return{
-    form, $showForm
+    $showForm, $btnAdd
   }
 }
 
+const UI = () => {
+  const form = document.querySelector('form');
+  const body = document.querySelector('body');
 
-export default input;
+  return{
+    form, body
+  }
+}
+
+const DATA = () => {
+
+  const taskTitle = document.querySelector('#inputTitle').value;
+  const taskDate = document.querySelector('#inputDate').value;
+  const taskPriority = document.querySelector('#inputPriority').value;
+
+  return{
+    taskDate, taskPriority, taskTitle
+  }
+}
+
+export { UI, BTN, DATA } ;

@@ -1,3 +1,4 @@
+import { UI } from "./input";
 // Helper for element constructors
 
 function createEl(type, id, format, elClass){
@@ -159,7 +160,7 @@ const btnAdd = () => {
 }
 
 const BodyShow = () => {
-  const body = document.querySelector('body');
+  const { body } = UI();
 
   // clear body and add new tasks
   while(body.firstChild){

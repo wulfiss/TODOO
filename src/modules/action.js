@@ -1,5 +1,5 @@
 import { showTask, BodyShow } from "./ui";
-import input from "./input";
+import { UI, BTN, DATA } from "./input";
 
 const Tasks = (title, dueDate, priority, complete) => {
   const taskTitle =  title;
@@ -29,21 +29,10 @@ const arrToJson = (task) => {
 };
 
 const addTask = () => {
-  const btnAdd = document.querySelector('#btnAdd');
+  const { $btnAdd } = BTN();
 
-  const infoTask = () => {
-    const taskTitle = document.querySelector('#inputTitle').value;
-    const taskDate = document.querySelector('#inputDate').value;
-    const taskPriority = document.querySelector('#inputPriority').value;
-
-    return{
-      taskDate, taskPriority, taskTitle
-    }
-  }
-
-
-  btnAdd.addEventListener('click', (e) => {
-    const newTask = Tasks(infoTask().taskTitle,infoTask().taskDate, infoTask().taskPriority);
+  $btnAdd.addEventListener('click', (e) => {
+    const newTask = Tasks(DATA().taskTitle,DATA().taskDate, DATA().taskPriority);
     arrToJson(newTask);
 
     BodyShow();
@@ -54,8 +43,8 @@ const addTask = () => {
 };
 
 const showAdd = () => {
-  const { form } = input();
-  const { $showForm } = input();
+  const { form } = UI();
+  const { $showForm } = BTN();
 
   form.style.display = 'none';
 
@@ -66,8 +55,8 @@ const showAdd = () => {
 }
 
 const btnAddAction = () => {
-  const { form } = input();
-  const { $showForm } = input();
+  const { form } = UI();
+  const { $showForm } = BTN();
   const txtCancel = document.createTextNode('Cancel');
 
   $showForm.addEventListener('click', (e) => {
@@ -81,5 +70,6 @@ const btnAddAction = () => {
 
   })
 }
+
 export { addTask, btnAddAction } ;
 
