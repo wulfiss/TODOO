@@ -113,11 +113,13 @@ const showTask = () => {
     if(arrJson){
       for(let i = 0; i < arrJson.length; i+=1){
         const divTask = createEl('', 'task', 'div', 'task');
+        divTask.setAttribute('data-handler', `${i}`);
 
         const checkBox = document.createElement('input');
         checkBox.setAttribute('type', 'checkbox');
         checkBox.classList.add(`checkBox`);
         checkBox.setAttribute('id', 'checkBox');
+        checkBox.setAttribute('data-handler', `${i}`);
 
         const divTitleShow = createEl('', 'task', 'div', 'tasks');
         divTitleShow.textContent = arrJson[i].taskTitle;
@@ -126,6 +128,7 @@ const showTask = () => {
         const divPriorityShow = createEl('', 'task', 'div', 'tasks');
         divPriorityShow.textContent = arrJson[i].taskPriority
         const divBtnShow = btnCreator('btnDelete','btnDelete','X');
+        divBtnShow.setAttribute('data-handler', `${i}`);
 
         divTask.appendChild(checkBox);
         divTask.appendChild(divTitleShow);
@@ -148,6 +151,12 @@ const showTask = () => {
   return divMainTask;
 }
 
+const btnAdd = () => {
+  const $btnAdd = btnCreator('$btnAdd', 'btnAdd', 'Add');
+
+  return $btnAdd;
+
+}
 
 const BodyShow = () => {
   const body = document.querySelector('body');
@@ -158,11 +167,13 @@ const BodyShow = () => {
   }
 
   body.appendChild(userForm());
+  body.appendChild(btnAdd());
   body.appendChild(showTask());
 
   return body;
 }
 
 
-export { userForm, showTask, BodyShow };
+
+export { userForm, showTask, BodyShow, btnAdd };
 

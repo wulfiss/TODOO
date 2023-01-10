@@ -11,6 +11,15 @@ const Tasks = (title, dueDate, priority, complete) => {
   }
 }
 
+const input = () => {
+  const form = document.querySelector('form');
+  const btnAdd = document.querySelector('.btnAdd');
+
+  return{
+    form, btnAdd
+  }
+}
+
 // check if exist data in the local storage, if true, add new task to the existing object, if false, create a new array
 const arrToJson = (task) => {
   let arrJson = JSON.parse(localStorage.getItem('arrTask'));
@@ -52,4 +61,33 @@ const addTask = () => {
 
 };
 
-export default addTask;
+const showAdd = () => {
+  const { form } = input();
+  const { btnAdd } = input();
+
+  form.style.display = 'none';
+
+  btnAdd.removeChild(btnAdd.firstChild);
+
+  const btnTxtAdd = document.createTextNode('Add');
+  btnAdd.appendChild(btnTxtAdd);
+}
+
+const btnAddAction = () => {
+  const { form } = input();
+  const { btnAdd } = input();
+  const txtCancel = document.createTextNode('Cancel');
+
+  btnAdd.addEventListener('click', (e) => {
+    if(form.style.display === 'grid'){
+      showAdd();
+    }else{
+      form.style.display = 'grid';
+      btnAdd.removeChild(btnAdd.firstChild);
+      btnAdd.appendChild(txtCancel);
+    }
+
+  })
+}
+export { addTask, btnAddAction } ;
+
