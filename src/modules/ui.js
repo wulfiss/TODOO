@@ -148,5 +148,21 @@ const showTask = () => {
   return divMainTask;
 }
 
-export { userForm, showTask };
+
+const BodyShow = () => {
+  const body = document.querySelector('body');
+
+  // clear body and add new tasks
+  while(body.firstChild){
+    body.removeChild(body.firstChild);
+  }
+
+  body.appendChild(userForm());
+  body.appendChild(showTask());
+
+  return body;
+}
+
+
+export { userForm, showTask, BodyShow };
 
