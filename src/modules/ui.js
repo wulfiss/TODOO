@@ -152,7 +152,7 @@ const showTask = () => {
 }
 
 const btnAdd = () => {
-  const $btnAdd = btnCreator('$btnAdd', 'btnAdd', 'Add');
+  const $btnAdd = btnCreator('btnShowForm', 'btnShowForm', 'Add');
 
   return $btnAdd;
 

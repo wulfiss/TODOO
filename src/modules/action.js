@@ -1,4 +1,5 @@
 import { showTask, BodyShow } from "./ui";
+import input from "./input";
 
 const Tasks = (title, dueDate, priority, complete) => {
   const taskTitle =  title;
@@ -8,15 +9,6 @@ const Tasks = (title, dueDate, priority, complete) => {
 
   return{
     taskTitle, taskDueDate, taskPriority, taskComplete
-  }
-}
-
-const input = () => {
-  const form = document.querySelector('form');
-  const btnAdd = document.querySelector('.btnAdd');
-
-  return{
-    form, btnAdd
   }
 }
 
@@ -63,28 +55,28 @@ const addTask = () => {
 
 const showAdd = () => {
   const { form } = input();
-  const { btnAdd } = input();
+  const { $showForm } = input();
 
   form.style.display = 'none';
 
-  btnAdd.removeChild(btnAdd.firstChild);
+  $showForm.removeChild($showForm.firstChild);
 
   const btnTxtAdd = document.createTextNode('Add');
-  btnAdd.appendChild(btnTxtAdd);
+  $showForm.appendChild(btnTxtAdd);
 }
 
 const btnAddAction = () => {
   const { form } = input();
-  const { btnAdd } = input();
+  const { $showForm } = input();
   const txtCancel = document.createTextNode('Cancel');
 
-  btnAdd.addEventListener('click', (e) => {
+  $showForm.addEventListener('click', (e) => {
     if(form.style.display === 'grid'){
       showAdd();
     }else{
       form.style.display = 'grid';
-      btnAdd.removeChild(btnAdd.firstChild);
-      btnAdd.appendChild(txtCancel);
+      $showForm.removeChild($showForm.firstChild);
+      $showForm.appendChild(txtCancel);
     }
 
   })
