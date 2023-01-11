@@ -37,9 +37,8 @@ const userForm = () => {
   form.setAttribute('id', 'formTask');
 
   const inputTitle = createEl('text','inputTitle', 'input');
-  const labelInputTitle = labelCreator('inputTitle', 'Title: ');
+  inputTitle.setAttribute('placeholder', 'New task');
 
-  form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
 
   /* const inputDescription = createEl('text', 'inputDescrip', 'input');
@@ -50,7 +49,8 @@ const userForm = () => {
   */
 
   const inputDate = createEl('date', 'inputDate', 'input');
-  const labelInputDate = labelCreator('inputDate', 'Due: ');
+  inputDate.setAttribute('placeholder', 'Set date')
+
 
   form.appendChild(labelInputDate);
   form.appendChild(inputDate);
@@ -75,10 +75,8 @@ const userForm = () => {
   form.appendChild(inputPriority);
 
   const btnAdd = btnCreator('btnAdd', 'btnShow', 'Add');
-  const btnCancel = btnCreator('btnCancel', 'btnShow', 'Cancel');
 
   form.appendChild(btnAdd);
-  form.appendChild(btnCancel);
 
   return form;
 }

@@ -54,7 +54,9 @@ function addTask() {
   const { $btnAdd } = BTN();
 
   $btnAdd.addEventListener('click', (e) => {
-    const newTask = Tasks(DATA().taskTitle,DATA().taskDate, DATA().taskPriority);
+    const { taskTitle, taskDate, taskPriority } = DATA();
+
+    const newTask = Tasks(taskTitle, taskDate, taskPriority);
     arrToJson(newTask);
 
     BodyShow();
