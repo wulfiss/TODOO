@@ -34,7 +34,6 @@ function btnCreator(id, btnClass, text){
 const userForm = () => {
 
   const form = document.createElement('form');
-  form.setAttribute('id', 'formTask');
 
   const inputTitle = createEl('text','inputTitle', 'input');
   inputTitle.setAttribute('placeholder', 'New task');
@@ -153,7 +152,6 @@ const showTask = () => {
 
 const btnAdd = () => {
   const $btnAdd = btnCreator('btnShowForm', 'btnShowForm', 'Add');
-  $btnAdd.setAttribute('data-mode', 'false');
 
   return $btnAdd;
 
@@ -166,9 +164,8 @@ const BodyShow = () => {
   while(body.firstChild){
     body.removeChild(body.firstChild);
   }
-  const mainDiv = createEl('', 'mainDiv', 'div', 'divTask');
 
-  body.appendChild(mainDiv);
+  body.appendChild(userForm());
   body.appendChild(btnAdd());
   body.appendChild(showTask());
 
