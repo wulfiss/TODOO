@@ -8,11 +8,12 @@ const BTN = () => {
 }
 
 const UI = () => {
-  const form = document.querySelector('form');
+  const formTask = document.querySelector('#formTask');
   const body = document.querySelector('body');
+  const mainDiv = document.querySelector('#mainDiv');
 
   return{
-    form, body
+    formTask, body, mainDiv
   }
 }
 
