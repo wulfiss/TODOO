@@ -42,13 +42,6 @@ const userForm = () => {
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
 
-  /* const inputDescription = createEl('text', 'inputDescrip', 'input');
-  const labelInputDescrip = labelCreator ('inputDescrip', 'Description: ');
-
-  form.appendChild(labelInputDescrip);
-  form.appendChild(inputDescription);
-  */
-
   const inputDate = createEl('date', 'inputDate', 'input');
   const labelInputDate = labelCreator('inputDate', 'Due: ');
 
@@ -75,10 +68,8 @@ const userForm = () => {
   form.appendChild(inputPriority);
 
   const btnAdd = btnCreator('btnAdd', 'btnShow', 'Add');
-  const btnCancel = btnCreator('btnCancel', 'btnShow', 'Cancel');
 
   form.appendChild(btnAdd);
-  form.appendChild(btnCancel);
 
   return form;
 }

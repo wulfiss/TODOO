@@ -1,6 +1,6 @@
 import { userForm, BodyShow } from "./ui";
 import { UI, BTN, DATA } from "./input";
-
+/*
 const Tasks = (title, dueDate, priority, complete) => {
   const taskTitle =  title;
   const taskDueDate = dueDate;
@@ -11,9 +11,14 @@ const Tasks = (title, dueDate, priority, complete) => {
     taskTitle, taskDueDate, taskPriority, taskComplete
   }
 }
+*/
+
+const Tasks = (taskTitle, taskDueDate, taskPriority, taskComplete) => ({
+  taskTitle, taskDueDate, taskPriority, taskComplete
+})// just a object creator for task the full version is up
 
 // check if exist data in the local storage, if true, add new task to the existing object, if false, create a new array
-const arrToJson = (task) => {
+const arrToJson = function convertJsonToArrAndArrToJson(task){
   let arrJson = JSON.parse(localStorage.getItem('arrTask'));
 
   if(arrJson){
@@ -28,7 +33,7 @@ const arrToJson = (task) => {
   return localStorage.setItem('arrTask', JSON.stringify(arrJson));
 };
 
-const btnShowAddTask = () => {
+const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
   const { mainDiv } = UI();
   const { $showForm } = BTN();
 
@@ -50,11 +55,13 @@ const btnShowAddTask = () => {
 
 }
 
-function addTask() {
+const addTask = function addTaskToArr(){
   const { $btnAdd } = BTN();
 
   $btnAdd.addEventListener('click', (e) => {
-    const newTask = Tasks(DATA().taskTitle,DATA().taskDate, DATA().taskPriority);
+    const { taskTitle, taskDate, taskPriority } = DATA();
+
+    const newTask = Tasks(taskTitle, taskDate, taskPriority);
     arrToJson(newTask);
 
     BodyShow();
