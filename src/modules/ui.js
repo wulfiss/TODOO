@@ -163,8 +163,10 @@ const btnAdd = () => {
 
 }
 
-const showTaskComplete = function showAllTaskInfoWhenClickTaskInList(){
+const showFullTask = function showAllTaskInfoWhenClickTaskInList(){
+  const divTaskFull = createEl('div','taskFull', 'taskFull');
 
+  return divTaskFull;
 }
 
 const BodyShow = () => {
@@ -186,7 +188,7 @@ const BodyShow = () => {
 
 
 
-export { userForm, showTaskList, BodyShow, btnAdd };
+export { userForm, showTaskList, BodyShow, btnAdd, showFullTask };
 
 /*
 when click in div task, show all the data of the task.

@@ -1,4 +1,4 @@
-import { userForm, BodyShow } from "./ui";
+import { userForm, BodyShow, showFullTask } from "./ui";
 import { UI, BTN, DATA } from "./input";
 /*
 const Tasks = (title, dueDate, priority, complete) => {
@@ -75,7 +75,7 @@ const addTask = function addTaskToArr(){
 
 const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
 
-  const { taskContainerDiv } = UI();
+  const { taskContainerDiv, mainDiv } = UI();
 
   taskContainerDiv.addEventListener('click', (e) => {
     const { target } = e;
@@ -84,6 +84,11 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
     if(target.nodeName === 'DIV' && target.id === 'task'){
       dataTask = target.dataset.task;
       console.log(dataTask);
+
+      mainDiv.appendChild(showFullTask());
+      mainDiv.style.display = 'grid';
+      mainDiv.removeChild(mainDiv.firstChild);
+
     }
 
   });
