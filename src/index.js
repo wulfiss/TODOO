@@ -1,10 +1,11 @@
 import './style.scss';
-import { showTask, userForm, BodyShow } from './modules/ui';
-import  { addTask, btnShowAddTask } from './modules/action';
+import { showTaskList, userForm, BodyShow } from './modules/ui';
+import  { addTask, btnShowAddTask, readDivTaskClick } from './modules/action';
 
 
 BodyShow();
 btnShowAddTask();
+readDivTaskClick();
 
 
 const lala = 'What a shit';

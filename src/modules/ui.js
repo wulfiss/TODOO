@@ -19,11 +19,11 @@ function labelCreator(id, text){
   return tempLabel;
 }
 
-function btnCreator(id, btnClass, text){
+function btnCreator(id, text, /* btnClass */){
   const btn = document.createElement('button');
   btn.setAttribute('type', `button`);
   btn.setAttribute('id', `${id}`);
-  btn.classList.add(`${btnClass}`);
+  // btn.classList.add(btnClass);
   const txt = document.createTextNode(text);
   btn.appendChild(txt);
 
@@ -41,6 +41,15 @@ const userForm = () => {
 
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
+
+  const inputDescription = createEl('text','inputDescription', 'input');
+  const lblDescription = labelCreator('inputDescription', 'Description: ');
+
+  form.appendChild(labelInputTitle);
+  form.appendChild(inputTitle);
+
+  form.appendChild(lblDescription);
+  form.appendChild(inputDescription);
 
   const inputDate = createEl('date', 'inputDate', 'input');
   const labelInputDate = labelCreator('inputDate', 'Due: ');
@@ -74,7 +83,7 @@ const userForm = () => {
   return form;
 }
 
-const showTask = () => {
+const showTaskList = () => {
 
   const divMainTask = createEl('','divMainTask', 'div', 'tableTask');
 
@@ -101,33 +110,34 @@ const showTask = () => {
 
   const showTaskDiv = () => {
     const arrJson = JSON.parse(localStorage.getItem('arrTask'));
-    const divTaskTest = createEl('', 'tasks', 'div', 'tasks');
+    const divTaskTest = createEl('', 'containerTasks', 'div', 'containerTasks');
 
     if(arrJson){
       for(let i = 0; i < arrJson.length; i+=1){
         const divTask = createEl('', 'task', 'div', 'task');
-        divTask.setAttribute('data-handler', `${i}`);
+        divTask.setAttribute('data-task', `${i}`);
 
         const checkBox = document.createElement('input');
         checkBox.setAttribute('type', 'checkbox');
         checkBox.classList.add(`checkBox`);
         checkBox.setAttribute('id', 'checkBox');
-        checkBox.setAttribute('data-handler', `${i}`);
+        checkBox.setAttribute('data-check', `${i}`);
 
-        const divTitleShow = createEl('', 'task', 'div', 'tasks');
+        const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
         divTitleShow.textContent = arrJson[i].taskTitle;
-        const divDateShow = createEl('', 'task', 'div', 'tasks');
+        const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
         divDateShow.textContent = arrJson[i].taskDueDate;
-        const divPriorityShow = createEl('', 'task', 'div', 'tasks');
+        const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
         divPriorityShow.textContent = arrJson[i].taskPriority
-        const divBtnShow = btnCreator('btnDelete','btnDelete','X');
-        divBtnShow.setAttribute('data-handler', `${i}`);
+        const divBtnShowDel = btnCreator('btnDelete', 'X');
+        divBtnShowDel.classList.add('divList', 'btnDel');
+        divBtnShowDel.setAttribute('data-del', `${i}`);
 
         divTask.appendChild(checkBox);
         divTask.appendChild(divTitleShow);
         divTask.appendChild(divDateShow);
         divTask.appendChild(divPriorityShow);
-        divTask.appendChild(divBtnShow);
+        divTask.appendChild(divBtnShowDel);
 
         divTaskTest.appendChild(divTask);
       }
@@ -145,10 +155,15 @@ const showTask = () => {
 }
 
 const btnAdd = () => {
-  const $btnAdd = btnCreator('btnShowForm', 'btnShowForm', 'Add');
+  const $btnAdd = btnCreator('btnShowForm', 'Add');
+  $btnAdd.classList.add('btnShowForm');
   $btnAdd.setAttribute('data-mode', 'false');
 
   return $btnAdd;
+
+}
+
+const showTaskComplete = function showAllTaskInfoWhenClickTaskInList(){
 
 }
 
@@ -163,17 +178,17 @@ const BodyShow = () => {
 
   body.appendChild(mainDiv);
   body.appendChild(btnAdd());
-  body.appendChild(showTask());
+  body.appendChild(showTaskList());
 
   return body;
 }
 
 
 
-export { userForm, showTask, BodyShow, btnAdd };
+
+export { userForm, showTaskList, BodyShow, btnAdd };
 
 /*
-add descriptions for form new task.
 when click in div task, show all the data of the task.
 add delete and complete functionality
  */

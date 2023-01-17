@@ -7,3 +7,19 @@ div.head, div.task{
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
 }
+
+div.task{
+    &:hover{
+         background-color: aqua;
+         cursor: pointer;
+        }
+}
+
+span.spanList{
+    pointer-events: none; // Avoid the child el being call when the event listener is in parent.
+}
+
+.divList{
+    color: rebeccapurple;
+    background-color: red;
+}

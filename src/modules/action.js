@@ -13,8 +13,8 @@ const Tasks = (title, dueDate, priority, complete) => {
 }
 */
 
-const Tasks = (taskTitle, taskDueDate, taskPriority, taskComplete) => ({
-  taskTitle, taskDueDate, taskPriority, taskComplete
+const Tasks = (taskTitle, taskDueDate, taskPriority, taskComplete, taskDescription) => ({
+  taskTitle, taskDueDate, taskPriority, taskComplete, taskDescription
 })// just a object creator for task the full version is up
 
 // check if exist data in the local storage, if true, add new task to the existing object, if false, create a new array
@@ -59,9 +59,9 @@ const addTask = function addTaskToArr(){
   const { $btnAdd } = BTN();
 
   $btnAdd.addEventListener('click', (e) => {
-    const { taskTitle, taskDate, taskPriority } = DATA();
+    const { taskTitle, taskDate, taskPriority, taskDescription } = DATA();
 
-    const newTask = Tasks(taskTitle, taskDate, taskPriority);
+    const newTask = Tasks(taskTitle, taskDate, taskPriority, taskDescription);
     arrToJson(newTask);
 
     BodyShow();
@@ -71,5 +71,21 @@ const addTask = function addTaskToArr(){
 
 };
 
-export { addTask, btnShowAddTask } ;
+const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
+
+  const { taskContainerDiv } = UI();
+
+  taskContainerDiv.addEventListener('click', (e) => {
+    const { target } = e;
+    let dataTask;
+
+    if(target.nodeName === 'DIV' && target.id === 'task'){
+      dataTask = target.dataset.task;
+      console.log(dataTask);
+    }
+
+  });
+}
+
+export { addTask, btnShowAddTask, readDivTaskClick } ;
 

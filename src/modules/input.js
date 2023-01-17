@@ -11,9 +11,10 @@ const UI = () => {
   const formTask = document.querySelector('#formTask');
   const body = document.querySelector('body');
   const mainDiv = document.querySelector('#mainDiv');
+  const taskContainerDiv = document.querySelector('#containerTasks');
 
   return{
-    formTask, body, mainDiv
+    formTask, body, mainDiv, taskContainerDiv
   }
 }
 
@@ -22,9 +23,9 @@ const DATA = () => {
   const taskTitle = document.querySelector('#inputTitle').value;
   const taskDate = document.querySelector('#inputDate').value;
   const taskPriority = document.querySelector('#inputPriority').value;
-
+  const taskDescription = document.querySelector('#inputDescription').value;
   return{
-    taskDate, taskPriority, taskTitle
+    taskDate, taskPriority, taskTitle, taskDescription
   }
 }
 
