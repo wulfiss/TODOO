@@ -45,11 +45,13 @@ const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
       mainDiv.appendChild(userForm());
       addTask();
       mainDiv.style.display = 'grid';
+      mainDiv.classList.add('showFormFloat');
       target.setAttribute('data-mode','true');
       $showForm.textContent = 'Cancel';
     }else if(target.getAttribute('data-mode') === 'true'){
       mainDiv.removeChild(mainDiv.firstChild);
       mainDiv.style.display = 'none';
+      mainDiv.classList.remove('showFormFloat');
       target.setAttribute('data-mode','false');
       $showForm.textContent = 'Add';
     }
@@ -87,6 +89,7 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
 
       mainDiv.appendChild(showFullTask());
       mainDiv.style.display = 'grid';
+      mainDiv.classList.add('divShowFullInfo');
       mainDiv.removeChild(mainDiv.firstChild);
 
     }
