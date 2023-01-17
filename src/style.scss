@@ -8,18 +8,24 @@
     align-items: center;
 }
 
-
-form{
-    display: grid;
-}
-
-div.head, div.task{
+%grid-task{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
 }
 
+
+form{
+    display: grid;
+}
+
+div.head{
+    @extend %grid-task;
+}
+
 div.task{
+    @extend %grid-task;
+
     &:hover{
          background-color: aqua;
          cursor: pointer;
