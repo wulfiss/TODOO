@@ -44,10 +44,12 @@ const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
     if(target.getAttribute('data-mode') === 'false'){
       mainDiv.appendChild(userForm());
       addTask();
+      mainDiv.style.display = 'grid';
       target.setAttribute('data-mode','true');
       $showForm.textContent = 'Cancel';
     }else if(target.getAttribute('data-mode') === 'true'){
       mainDiv.removeChild(mainDiv.firstChild);
+      mainDiv.style.display = 'none';
       target.setAttribute('data-mode','false');
       $showForm.textContent = 'Add';
     }

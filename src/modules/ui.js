@@ -76,7 +76,7 @@ const userForm = () => {
   form.appendChild(inputPriorityLabel);
   form.appendChild(inputPriority);
 
-  const btnAdd = btnCreator('btnAdd', 'btnShow', 'Add');
+  const btnAdd = btnCreator('btnAdd', 'Add');
 
   form.appendChild(btnAdd);
 
