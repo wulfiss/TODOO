@@ -40,7 +40,6 @@ const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
   $showForm.addEventListener('click', (e) => {
     const { target } = e;
 
-
     if(target.getAttribute('data-mode') === 'false'){
       mainDiv.appendChild(userForm());
       addTask();
