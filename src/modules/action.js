@@ -86,10 +86,10 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
       dataTask = target.dataset.task;
       console.log(dataTask);
 
-      mainDiv.appendChild(showFullTask());
+      mainDiv.appendChild(showFullTask(dataTask));
       mainDiv.style.display = 'grid';
       mainDiv.classList.add('divShowFullInfo');
-      mainDiv.removeChild(mainDiv.firstChild);
+      // mainDiv.removeChild(mainDiv.firstChild);
 
     }
 

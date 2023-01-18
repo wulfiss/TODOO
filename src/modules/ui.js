@@ -163,8 +163,28 @@ const btnAdd = () => {
 
 }
 
-const showFullTask = function showAllTaskInfoWhenClickTaskInList(){
+const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask){
   const divTaskFull = createEl('div','taskFull', 'taskFull');
+
+  const arrJson = JSON.parse(localStorage.getItem('arrTask'));
+
+  const divTask = createEl('', 'task', 'div', 'task');
+  divTask.dataset.task = dataTask;
+
+  const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
+  divTitleShow.textContent = arrJson[dataTask].taskTitle;
+  const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
+  divDateShow.textContent = arrJson[dataTask].taskDueDate;
+  const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
+  divPriorityShow.textContent = arrJson[dataTask].taskPriority
+  const divBtnShowDel = btnCreator('btnDelete', 'X');
+  divBtnShowDel.classList.add('divList', 'btnDel');
+  divBtnShowDel.dataset.task = dataTask;
+
+  divTaskFull.appendChild(divTitleShow);
+  divTaskFull.appendChild(divDateShow);
+  divTaskFull.appendChild(divPriorityShow);
+  divTaskFull.appendChild(divBtnShowDel);
 
   return divTaskFull;
 }
