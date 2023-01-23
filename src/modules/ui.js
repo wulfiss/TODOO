@@ -85,20 +85,20 @@ const userForm = () => {
 
 const showTaskList = () => {
 
-  const divMainTask = createEl('','divMainTask', 'div', 'tableTask');
+  const divMainTask = createEl("", "divMainTask", "div", "tableTask");
 
-  const divHead = createEl('', 'divHead', 'div', 'head');
-  const completeHead = createEl('', 'divComplete', 'div', 'header');
-  const titleHead = createEl('', 'divTitle', 'div', 'header');
-  const dueDateHead = createEl('', 'divDueDate', 'div', 'header');
-  const priorityHead = createEl('', 'divPriority', 'div', 'header');
-  const deleteHead = createEl('', 'divDelete', 'div', 'header');
+  /*   const divHead = createEl("", "divHead", "div", "head");
+  const completeHead = createEl("", "divComplete", "div", "header");
+  const titleHead = createEl("", "divTitle", "div", "header");
+  const dueDateHead = createEl("", "divDueDate", "div", "header");
+  const priorityHead = createEl("", "divPriority", "div", "header");
+  const deleteHead = createEl("", "divDelete", "div", "header");
 
-  completeHead.textContent = 'Complete';
-  titleHead.textContent = 'Task';
-  dueDateHead.textContent = 'Due Date';
-  priorityHead.textContent = 'Priority';
-  deleteHead.textContent = 'Delete';
+  completeHead.textContent = "Complete";
+  titleHead.textContent = "Task";
+  dueDateHead.textContent = "Due Date";
+  priorityHead.textContent = "Priority";
+  deleteHead.textContent = "Delete";
 
   divHead.appendChild(completeHead);
   divHead.appendChild(titleHead);
@@ -106,7 +106,7 @@ const showTaskList = () => {
   divHead.appendChild(priorityHead);
   divHead.appendChild(deleteHead);
 
-  divMainTask.appendChild(divHead);
+  divMainTask.appendChild(divHead); */
 
   const showTaskDiv = () => {
     const arrJson = JSON.parse(localStorage.getItem('arrTask'));

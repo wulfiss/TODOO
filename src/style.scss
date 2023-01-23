@@ -14,7 +14,6 @@
     justify-items: center;
 }
 
-
 form{
     display: grid;
 }
@@ -22,9 +21,20 @@ form{
 div.head{
     @extend %grid-task;
 }
+//--------- show task------------------- //
+
+div.containerTasks{
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
+}
 
 div.task{
-    @extend %grid-task;
+    //@extend %grid-task;
+    display: grid;
+    border: .12rem solid black;
+    border-radius: 10px;
 
     &:hover{
          background-color: aqua;
@@ -41,6 +51,7 @@ span.spanList{
     background-color: red;
 }
 
+//--------- end show task------------------- //
 
 div#mainDiv{
     @extend %float-window;
