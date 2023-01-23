@@ -37,7 +37,8 @@ const userForm = () => {
   form.setAttribute('id', 'formTask');
 
   const inputTitle = createEl('text','inputTitle', 'input');
-  const labelInputTitle = labelCreator('inputTitle', 'Title: ');
+  const labelInputTitle = labelCreator('inputTitle', 'Task: ');
+  inputTitle.setAttribute('required','');
 
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
@@ -77,7 +78,7 @@ const userForm = () => {
   form.appendChild(inputPriority);
 
   const btnAdd = btnCreator('btnAdd', 'Add');
-
+  btnAdd.setAttribute('type', `submit`);
   form.appendChild(btnAdd);
 
   return form;

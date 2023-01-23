@@ -15,7 +15,14 @@
 }
 
 form{
+    @extend %float-window;
     display: grid;
+    left: 50%;
+    top: 50%;
+    width: 270px;
+    height: 280px;
+    background-color: white;
+    border: 1px solid black;
 }
 
 div.head{

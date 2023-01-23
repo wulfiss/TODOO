@@ -34,23 +34,20 @@ const arrToJson = function convertJsonToArrAndArrToJson(task){
 };
 
 const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
-  const { mainDiv } = UI();
+  const { body } = UI();
   const { $showForm } = BTN();
 
   $showForm.addEventListener('click', (e) => {
     const { target } = e;
 
     if(target.getAttribute('data-mode') === 'false'){
-      mainDiv.appendChild(userForm());
+      body.appendChild(userForm());
       addTask();
-      mainDiv.style.display = 'grid';
-      mainDiv.classList.add('showFormFloat');
       target.setAttribute('data-mode','true');
       $showForm.textContent = 'Cancel';
     }else if(target.getAttribute('data-mode') === 'true'){
-      mainDiv.removeChild(mainDiv.firstChild);
-      mainDiv.style.display = 'none';
-      mainDiv.classList.remove('showFormFloat');
+      const { formTask } = UI();
+      formTask.remove();
       target.setAttribute('data-mode','false');
       $showForm.textContent = 'Add';
     }
