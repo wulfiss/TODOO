@@ -78,7 +78,7 @@ const userForm = () => {
   form.appendChild(inputPriority);
 
   const btnAdd = btnCreator('btnAdd', 'Add');
-  btnAdd.setAttribute('type', `submit`);
+
   form.appendChild(btnAdd);
 
   return form;
@@ -164,8 +164,9 @@ const btnAdd = () => {
 
 }
 
-const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask){
-  const divTaskFull = createEl('div','taskFull', 'taskFull');
+const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask, mode){
+  const divTaskFull = createEl('div','taskFull', 'div');
+  divTaskFull.dataset.mode = mode;
 
   const arrJson = JSON.parse(localStorage.getItem('arrTask'));
 

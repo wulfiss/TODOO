@@ -11,10 +11,11 @@ const UI = () => {
   const formTask = document.querySelector('#formTask');
   const body = document.querySelector('body');
   const mainDiv = document.querySelector('#mainDiv');
+  const fullTask = document.querySelector('#taskFull');
   const taskContainerDiv = document.querySelector('#containerTasks');
 
   return{
-    formTask, body, mainDiv, taskContainerDiv
+    formTask, body, mainDiv, taskContainerDiv, fullTask
   }
 }
 

@@ -73,7 +73,7 @@ const addTask = function addTaskToArr(){
 
 const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
 
-  const { taskContainerDiv, mainDiv } = UI();
+  const { taskContainerDiv, body } = UI();
 
   taskContainerDiv.addEventListener('click', (e) => {
     const { target } = e;
@@ -83,15 +83,27 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
       dataTask = target.dataset.task;
       console.log(dataTask);
 
-      mainDiv.appendChild(showFullTask(dataTask));
-      mainDiv.style.display = 'grid';
-      mainDiv.classList.add('divShowFullInfo');
-      // mainDiv.removeChild(mainDiv.firstChild);
+      body.appendChild(showFullTask(dataTask, true));
 
     }
+    testEvent();
 
   });
+
 }
 
-export { addTask, btnShowAddTask, readDivTaskClick } ;
+const testEvent = function testForClosingFullTaskWindowWhenClickOutSideOfIt(){
+  const { body, fullTask } = UI();
+  if(fullTask !== null){
+    console.log('Test1');
+    window.addEventListener('click', (e) => {
+      console.log('Test');
+      if(fullTask.dataset.mode === 'true'){
+        fullTask.remove();
+      }
+    });
+  }
+}
+
+export { addTask, btnShowAddTask, readDivTaskClick, testEvent } ;
 

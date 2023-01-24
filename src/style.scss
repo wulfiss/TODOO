@@ -60,15 +60,16 @@ span.spanList{
 
 //--------- end show task------------------- //
 
-div#mainDiv{
+#taskFull{
     @extend %float-window;
-    display: none;
+    display: grid;
     left: 50%;
     top: 50%;
     width: 270px;
     height: 280px;
     background-color: white;
     border: 1px solid black;
+    pointer-events: none; // Avoid the child el being call when the event listener is in parent.
 }
 
 button.btnShowForm{
