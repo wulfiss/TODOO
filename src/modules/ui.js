@@ -40,7 +40,6 @@ const userForm = () => {
 
   const inputTitle = createEl('text','inputTitle', 'input');
   const labelInputTitle = labelCreator('inputTitle', 'Task: ');
-  inputTitle.setAttribute('required','');
 
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
@@ -60,7 +59,7 @@ const userForm = () => {
   form.appendChild(labelInputDate);
   form.appendChild(inputDate);
 
-  // create a select element and add elements to the dropdown
+  /* create a select element and add elements to the dropdown
   const inputPriority = createEl('select','inputPriority', 'select');
   const inputPriorityLabel = labelCreator('inputPriority', 'Priority');
 
@@ -78,12 +77,24 @@ const userForm = () => {
 
   form.appendChild(inputPriorityLabel);
   form.appendChild(inputPriority);
+ */
 
-  const btnAddSave = btnCreator('btnAddSave', 'Save');
-  const btnAddCancel = btnCreator('btnAddCancel', 'Cancel');
+  const labelInputCheck = labelCreator('checkBox', 'Highlight: ');
+  const checkBox = document.createElement('input');
+  checkBox.setAttribute('type', 'checkbox');
+  checkBox.classList.add(`checkBox`);
+  checkBox.setAttribute('id', 'inputPriority');
+  checkBox.setAttribute('value', 'true');
+  checkBox.setAttribute('name', 'highlight');
 
-  form.appendChild(btnAddSave);
-  form.appendChild(btnAddCancel);
+  labelInputCheck.appendChild(checkBox)
+  form.appendChild(labelInputCheck);
+
+  const btnFormSave = btnCreator('btnFormSave', 'Save');
+  const btnFormCancel = btnCreator('btnFormCancel', 'Cancel');
+
+  form.appendChild(btnFormSave);
+  form.appendChild(btnFormCancel);
 
   divFullScreen.appendChild(form);
 
@@ -93,27 +104,6 @@ const userForm = () => {
 const showTaskList = () => {
 
   const divMainTask = createEl("", "divMainTask", "div", "tableTask");
-
-  /*   const divHead = createEl("", "divHead", "div", "head");
-  const completeHead = createEl("", "divComplete", "div", "header");
-  const titleHead = createEl("", "divTitle", "div", "header");
-  const dueDateHead = createEl("", "divDueDate", "div", "header");
-  const priorityHead = createEl("", "divPriority", "div", "header");
-  const deleteHead = createEl("", "divDelete", "div", "header");
-
-  completeHead.textContent = "Complete";
-  titleHead.textContent = "Task";
-  dueDateHead.textContent = "Due Date";
-  priorityHead.textContent = "Priority";
-  deleteHead.textContent = "Delete";
-
-  divHead.appendChild(completeHead);
-  divHead.appendChild(titleHead);
-  divHead.appendChild(dueDateHead);
-  divHead.appendChild(priorityHead);
-  divHead.appendChild(deleteHead);
-
-  divMainTask.appendChild(divHead); */
 
   const showTaskDiv = () => {
     const arrJson = JSON.parse(localStorage.getItem('arrTask'));
@@ -200,13 +190,17 @@ const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask, mode)
 const BodyShow = () => {
   const { body } = UI();
 
+  const headBody = document.createElement('header');
+  const mainBody = document.createElement('main');
+  mainBody.classList.add('mainBody');
+
   // clear body and add new tasks
   while(body.firstChild){
     body.removeChild(body.firstChild);
   }
-  const mainDiv = createEl('', 'mainDiv', 'div', 'divTask');
 
-  body.appendChild(mainDiv);
+  body.appendChild(headBody);
+  body.appendChild(mainBody);
   body.appendChild(btnAdd());
   body.appendChild(showTaskList());
 
@@ -214,11 +208,4 @@ const BodyShow = () => {
 }
 
 
-
-
 export { userForm, showTaskList, BodyShow, btnAdd, showFullTask };
-
-/*
-when click in div task, show all the data of the task.
-add delete and complete functionality
- */
