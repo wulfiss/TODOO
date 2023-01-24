@@ -92,18 +92,5 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
 
 }
 
-const testEvent = function testForClosingFullTaskWindowWhenClickOutSideOfIt(){
-  const { body, fullTask } = UI();
-  if(fullTask !== null){
-    console.log('Test1');
-    window.addEventListener('click', (e) => {
-      console.log('Test');
-      if(fullTask.dataset.mode === 'true'){
-        fullTask.remove();
-      }
-    });
-  }
-}
-
-export { addTask, btnShowAddTask, readDivTaskClick, testEvent } ;
+export { addTask, btnShowAddTask, readDivTaskClick } ;
 

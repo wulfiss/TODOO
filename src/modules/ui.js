@@ -32,6 +32,8 @@ function btnCreator(id, text, /* btnClass */){
 // ++++++++++++++++++++++//
 
 const userForm = () => {
+  const divFullScreen = document.createElement('div');
+  divFullScreen.classList.add('fullScreenDiv');
 
   const form = document.createElement('form');
   form.setAttribute('id', 'formTask');
@@ -77,11 +79,15 @@ const userForm = () => {
   form.appendChild(inputPriorityLabel);
   form.appendChild(inputPriority);
 
-  const btnAdd = btnCreator('btnAdd', 'Add');
+  const btnAddSave = btnCreator('btnAddSave', 'Save');
+  const btnAddCancel = btnCreator('btnAddCancel', 'Cancel');
 
-  form.appendChild(btnAdd);
+  form.appendChild(btnAddSave);
+  form.appendChild(btnAddCancel);
 
-  return form;
+  divFullScreen.appendChild(form);
+
+  return divFullScreen;
 }
 
 const showTaskList = () => {
