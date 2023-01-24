@@ -34,14 +34,14 @@ const arrToJson = function convertJsonToArrAndArrToJson(task){
 };
 
 const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
-  const { body } = UI();
+  const { mainBody } = UI();
   const { $showForm } = BTN();
 
   $showForm.addEventListener('click', (e) => {
     const { target } = e;
 
     if(target.getAttribute('data-mode') === 'false'){
-      body.appendChild(userForm());
+      mainBody.appendChild(userForm());
       addTask();
       target.setAttribute('data-mode','true');
       $showForm.textContent = 'Cancel';
@@ -73,7 +73,7 @@ const addTask = function addTaskToArr(){
 
 const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
 
-  const { taskContainerDiv, body } = UI();
+  const { taskContainerDiv, mainBody } = UI();
 
   taskContainerDiv.addEventListener('click', (e) => {
     const { target } = e;
@@ -83,7 +83,7 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
       dataTask = target.dataset.task;
       console.log(dataTask);
 
-      body.appendChild(showFullTask(dataTask, true));
+      mainBody.appendChild(showFullTask(dataTask, true));
 
     }
     testEvent();

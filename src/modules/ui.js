@@ -193,16 +193,19 @@ const BodyShow = () => {
   const headBody = document.createElement('header');
   const mainBody = document.createElement('main');
   mainBody.classList.add('mainBody');
+  const footerBody = document.createElement('footer');
 
   // clear body and add new tasks
   while(body.firstChild){
     body.removeChild(body.firstChild);
   }
 
+  mainBody.appendChild(btnAdd());
+  mainBody.appendChild(showTaskList());
+
   body.appendChild(headBody);
   body.appendChild(mainBody);
-  body.appendChild(btnAdd());
-  body.appendChild(showTaskList());
+  body.appendChild(footerBody);
 
   return body;
 }
