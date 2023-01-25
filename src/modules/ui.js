@@ -10,6 +10,30 @@ function createEl(type, id, format, elClass){
   return tempInput;
 }
 
+const createElements = function littleHelperForCreatingHtmlElements(type, id, clasS, attrType, textNode, idLbl){
+  const temp = document.createElement(type);
+
+  if(id){
+    temp.setAttribute('id', id);
+  }
+  if(clasS){
+    temp.classList.add(...clasS);
+  }
+  if(attrType){
+    temp.setAttribute('type', attrType);
+  }
+  if(textNode){
+    const txt = document.createTextNode(textNode);
+    temp.appendChild(txt);
+  }
+  if(idLbl){
+    temp.htmlFor = idLbl;
+  }
+
+  return temp;
+}
+
+
 function labelCreator(id, text){
   const tempLabel = document.createElement('label');
   tempLabel.htmlFor = `${id}`;
@@ -32,14 +56,13 @@ function btnCreator(id, text, /* btnClass */){
 // ++++++++++++++++++++++//
 
 const userForm = () => {
-  const divFullScreen = document.createElement('div');
-  divFullScreen.classList.add('fullScreenDiv');
 
-  const form = document.createElement('form');
-  form.setAttribute('id', 'formTask');
+  const divFullScreen = createElements('div', '', ['fullScreenDiv'], '', '');
 
-  const inputTitle = createEl('text','inputTitle', 'input');
-  const labelInputTitle = labelCreator('inputTitle', 'Task: ');
+  const form = createElements('form', 'formTask', '', '' ,'')
+
+  const labelInputTitle = createElements('label', '', '', '', 'Task', 'inputTitle');
+  const inputTitle = createElements('input', 'inputTitle', '', 'text', '', '');
 
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
@@ -101,54 +124,46 @@ const userForm = () => {
   return divFullScreen;
 }
 
-const showTaskList = () => {
+const taskDesk = () => {
 
-  const divMainTask = createEl("", "divMainTask", "div", "tableTask");
+  const arrJson = JSON.parse(localStorage.getItem('arrTask'));
+  const divTaskTest = createEl('', 'containerTasks', 'div', 'containerTasks');
 
-  const showTaskDiv = () => {
-    const arrJson = JSON.parse(localStorage.getItem('arrTask'));
-    const divTaskTest = createEl('', 'containerTasks', 'div', 'containerTasks');
+  if(arrJson){
+    for(let i = 0; i < arrJson.length; i+=1){
+      const divTask = createEl('', 'task', 'div', 'task');
+      divTask.setAttribute('data-task', `${i}`);
 
-    if(arrJson){
-      for(let i = 0; i < arrJson.length; i+=1){
-        const divTask = createEl('', 'task', 'div', 'task');
-        divTask.setAttribute('data-task', `${i}`);
+      const checkBox = document.createElement('input');
+      checkBox.setAttribute('type', 'checkbox');
+      checkBox.classList.add(`checkBox`);
+      checkBox.setAttribute('id', 'checkBox');
+      checkBox.setAttribute('data-check', `${i}`);
 
-        const checkBox = document.createElement('input');
-        checkBox.setAttribute('type', 'checkbox');
-        checkBox.classList.add(`checkBox`);
-        checkBox.setAttribute('id', 'checkBox');
-        checkBox.setAttribute('data-check', `${i}`);
+      const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
+      divTitleShow.textContent = arrJson[i].taskTitle;
+      const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
+      divDateShow.textContent = arrJson[i].taskDueDate;
+      const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
+      divPriorityShow.textContent = arrJson[i].taskPriority
+      const divBtnShowDel = btnCreator('btnDelete', 'X');
+      divBtnShowDel.classList.add('divList', 'btnDel');
+      divBtnShowDel.setAttribute('data-del', `${i}`);
 
-        const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
-        divTitleShow.textContent = arrJson[i].taskTitle;
-        const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
-        divDateShow.textContent = arrJson[i].taskDueDate;
-        const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
-        divPriorityShow.textContent = arrJson[i].taskPriority
-        const divBtnShowDel = btnCreator('btnDelete', 'X');
-        divBtnShowDel.classList.add('divList', 'btnDel');
-        divBtnShowDel.setAttribute('data-del', `${i}`);
+      divTask.appendChild(checkBox);
+      divTask.appendChild(divTitleShow);
+      divTask.appendChild(divDateShow);
+      divTask.appendChild(divPriorityShow);
+      divTask.appendChild(divBtnShowDel);
 
-        divTask.appendChild(checkBox);
-        divTask.appendChild(divTitleShow);
-        divTask.appendChild(divDateShow);
-        divTask.appendChild(divPriorityShow);
-        divTask.appendChild(divBtnShowDel);
-
-        divTaskTest.appendChild(divTask);
-      }
-    }else{
-      const txt = document.createTextNode('NO TASK');
-      divTaskTest.appendChild(txt);
+      divTaskTest.appendChild(divTask);
     }
-
-    return divTaskTest;
+  }else{
+    const txt = document.createTextNode('NO TASK');
+    divTaskTest.appendChild(txt);
   }
 
-  divMainTask.appendChild(showTaskDiv());
-
-  return divMainTask;
+  return divTaskTest;
 }
 
 const btnAdd = () => {
@@ -201,7 +216,7 @@ const BodyShow = () => {
   }
 
   mainBody.appendChild(btnAdd());
-  mainBody.appendChild(showTaskList());
+  mainBody.appendChild(taskDesk());
 
   body.appendChild(headBody);
   body.appendChild(mainBody);
@@ -211,4 +226,4 @@ const BodyShow = () => {
 }
 
 
-export { userForm, showTaskList, BodyShow, btnAdd, showFullTask };
+export { userForm, BodyShow, btnAdd, showFullTask };
