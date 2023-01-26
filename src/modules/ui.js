@@ -104,8 +104,11 @@ const taskDesk = () => {
       divTitleShow.dataset.task = i;
       const divDateShow = createElements('span', 'spanTaskDate', ['spanList'], '', arrJson[i].taskDueDate);
       divDateShow.dataset.task = i;
+      const spanDescription = createElements('span', 'spanTaskDescrip', ['spanList'], '' , arrJson[i].taskDescription);
+      spanDescription.dataset.task = i;
 
       divTask.appendChild(divTitleShow);
+      divTask.appendChild(spanDescription);
       divTask.appendChild(divDateShow);
 
       divTaskTest.appendChild(divTask);
