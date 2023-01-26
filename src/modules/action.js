@@ -86,8 +86,6 @@ const readDivTaskClick = function showAllTaskInfoWhenClickTaskInList(){
       mainBody.appendChild(showFullTask(dataTask, true));
 
     }
-    testEvent();
-
   });
 
 }
