@@ -41,7 +41,7 @@ const userForm = () => {
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
 
-  const inputDescription = createElements('input', 'inputDescription', '', 'text');
+  const inputDescription = createElements('textarea', 'inputDescription', '', '');
   const lblDescription = createElements('label', '', '', '', 'Description', 'inputDescription');
 
   form.appendChild(lblDescription);
@@ -79,8 +79,8 @@ const userForm = () => {
   labelInputCheck.appendChild(checkBox);
   form.appendChild(labelInputCheck);
 
-  const btnFormSave = createElements('button', 'btnFormSave', '', '', 'Save');
-  const btnFormCancel = createElements('button', 'btnFormCancel', '', '', 'Cancel');
+  const btnFormSave = createElements('button', 'btnFormSave', '', 'button', 'Save');
+  const btnFormCancel = createElements('button', 'btnFormCancel', '', 'button', 'Cancel');
 
   form.appendChild(btnFormSave);
   form.appendChild(btnFormCancel);

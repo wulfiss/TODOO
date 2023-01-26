@@ -24,11 +24,11 @@ const DATA = () => {
 
   const taskTitle = document.querySelector('#inputTitle').value;
   const taskDate = document.querySelector('#inputDate').value;
-  const taskPriority = document.querySelector('input[name="highlight"]:checked').value;
+  // const taskPriority = document.querySelector('input[name="highlight"]:checked').value;
   const taskDescription = document.querySelector('#inputDescription').value;
 
   return{
-    taskDate, taskPriority, taskTitle, taskDescription
+    taskDate, /* taskPriority, */ taskTitle, taskDescription
   }
 }
 

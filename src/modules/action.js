@@ -13,8 +13,8 @@ const Tasks = (title, dueDate, priority, complete) => {
 }
 */
 
-const Tasks = (taskTitle, taskDueDate, taskPriority, taskComplete, taskDescription) => ({
-  taskTitle, taskDueDate, taskPriority, taskComplete, taskDescription
+const Tasks = (taskTitle, taskDueDate, /* taskPriority, taskComplete, */ taskDescription) => ({
+  taskTitle, taskDueDate, /* taskPriority, taskComplete, */ taskDescription
 })// just a object creator for task the full version is up
 
 // check if exist data in the local storage, if true, add new task to the existing object, if false, create a new array
@@ -56,12 +56,12 @@ const btnShowAddTask = function showAndHideFormTaskWhenPressBtnAddOrCancel(){
 }
 
 const addTask = function addTaskToArr(){
-  const { $btnAdd } = BTN();
+  const { $btnFormSave } = BTN();
 
-  $btnAdd.addEventListener('click', (e) => {
-    const { taskTitle, taskDate, taskPriority, taskDescription } = DATA();
+  $btnFormSave.addEventListener('click', (e) => {
+    const { taskTitle, taskDate, /* taskPriority, */ taskDescription } = DATA();
 
-    const newTask = Tasks(taskTitle, taskDate, taskPriority, taskDescription);
+    const newTask = Tasks(taskTitle, taskDate, /* taskPriority, */ taskDescription);
     arrToJson(newTask);
 
     BodyShow();
