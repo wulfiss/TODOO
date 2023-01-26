@@ -1,14 +1,4 @@
 import { UI } from "./input";
-// Helper for element constructors
-
-function createEl(type, id, format, elClass){
-  const tempInput = document.createElement(`${format}`);
-  tempInput.setAttribute('type', `${type}`);
-  tempInput.setAttribute('id', `${id}`);
-  tempInput.classList.add(`${elClass}`);
-
-  return tempInput;
-}
 
 const createElements = function littleHelperForCreatingHtmlElements(type, id, clasS, attrType, textNode, idLbl, attrValue, attrName){
   const temp = document.createElement(type);
@@ -38,28 +28,6 @@ const createElements = function littleHelperForCreatingHtmlElements(type, id, cl
 
   return temp;
 }
-
-
-function labelCreator(id, text){
-  const tempLabel = document.createElement('label');
-  tempLabel.htmlFor = `${id}`;
-  const txt = document.createTextNode(text);
-  tempLabel.appendChild(txt);
-
-  return tempLabel;
-}
-
-function btnCreator(id, text, /* btnClass */){
-  const btn = document.createElement('button');
-  btn.setAttribute('type', `button`);
-  btn.setAttribute('id', `${id}`);
-  // btn.classList.add(btnClass);
-  const txt = document.createTextNode(text);
-  btn.appendChild(txt);
-
-  return btn;
-}
-// ++++++++++++++++++++++//
 
 const userForm = () => {
 
@@ -104,11 +72,13 @@ const userForm = () => {
   form.appendChild(inputPriorityLabel);
   form.appendChild(inputPriority);
  */
+
   const labelInputCheck = createElements('label', '', '', '', 'Highlight', 'checkBox');
   const checkBox = createElements('input', 'inputPriority', ['checkBox'], 'checkbox', '', '', 'true', 'highlight');
 
-  labelInputCheck.appendChild(checkBox)
+  labelInputCheck.appendChild(checkBox);
   form.appendChild(labelInputCheck);
+
   const btnFormSave = createElements('button', 'btnFormSave', '', '', 'Save');
   const btnFormCancel = createElements('button', 'btnFormCancel', '', '', 'Cancel');
 
@@ -123,34 +93,20 @@ const userForm = () => {
 const taskDesk = () => {
 
   const arrJson = JSON.parse(localStorage.getItem('arrTask'));
-  const divTaskTest = createEl('', 'containerTasks', 'div', 'containerTasks');
+  const divTaskTest = createElements('div', 'containerTask', ['containerTasks']);
 
   if(arrJson){
     for(let i = 0; i < arrJson.length; i+=1){
-      const divTask = createEl('', 'task', 'div', 'task');
-      divTask.setAttribute('data-task', `${i}`);
 
-      const checkBox = document.createElement('input');
-      checkBox.setAttribute('type', 'checkbox');
-      checkBox.classList.add(`checkBox`);
-      checkBox.setAttribute('id', 'checkBox');
-      checkBox.setAttribute('data-check', `${i}`);
+      const divTask = createElements('div', 'task', ['task'])
+      divTask.dataset.task = i;
+      const divTitleShow = createElements('span', 'spanTaskName', ['spanList'], '', arrJson[i].taskTitle);
+      divTitleShow.dataset.task = i;
+      const divDateShow = createElements('span', 'spanTaskDate', ['spanList'], '', arrJson[i].taskDueDate);
+      divDateShow.dataset.task = i;
 
-      const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
-      divTitleShow.textContent = arrJson[i].taskTitle;
-      const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
-      divDateShow.textContent = arrJson[i].taskDueDate;
-      const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
-      divPriorityShow.textContent = arrJson[i].taskPriority
-      const divBtnShowDel = btnCreator('btnDelete', 'X');
-      divBtnShowDel.classList.add('divList', 'btnDel');
-      divBtnShowDel.setAttribute('data-del', `${i}`);
-
-      divTask.appendChild(checkBox);
       divTask.appendChild(divTitleShow);
       divTask.appendChild(divDateShow);
-      divTask.appendChild(divPriorityShow);
-      divTask.appendChild(divBtnShowDel);
 
       divTaskTest.appendChild(divTask);
     }
@@ -163,37 +119,34 @@ const taskDesk = () => {
 }
 
 const btnAdd = () => {
-  const $btnAdd = btnCreator('btnShowForm', 'Add');
-  $btnAdd.classList.add('btnShowForm');
-  $btnAdd.setAttribute('data-mode', 'false');
+
+  const $btnAdd = createElements('button', 'btnShowForm', ['btnShowForm'], '', 'Add');
+  $btnAdd.dataset.mode = 'false';
 
   return $btnAdd;
 
 }
 
 const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask, mode){
-  const divTaskFull = createEl('div','taskFull', 'div');
+  const divTaskFull = createElements('div', 'taskFull');
   divTaskFull.dataset.mode = mode;
 
   const arrJson = JSON.parse(localStorage.getItem('arrTask'));
 
-  const divTask = createEl('', 'task', 'div', 'task');
+  const divTask = createElements('div', 'task', ['task']);
   divTask.dataset.task = dataTask;
+  const divTitleShow = createElements('span', 'spanTaskName', ['spanList'], '', arrJson[dataTask].taskTitle);
+  const divDateShow = createElements('span', 'spanTaskDate', ['spanList'], '', arrJson[dataTask].taskDueDate);
 
-  const divTitleShow = createEl('', 'taskDivTitle', 'span', 'spanList');
-  divTitleShow.textContent = arrJson[dataTask].taskTitle;
-  const divDateShow = createEl('', 'taskDivDate', 'span', 'spanList');
-  divDateShow.textContent = arrJson[dataTask].taskDueDate;
-  const divPriorityShow = createEl('', 'taskPriority', 'span', 'spanList');
-  divPriorityShow.textContent = arrJson[dataTask].taskPriority
-  const divBtnShowDel = btnCreator('btnDelete', 'X');
-  divBtnShowDel.classList.add('divList', 'btnDel');
+  const divBtnShowDel = createElements('button', 'btnDelete', ['divList', 'btnDel'], '', 'Delete');
   divBtnShowDel.dataset.task = dataTask;
+  const btnCloseAndSave = createElements('button', 'btnCloseSave', ['divList'], '', 'Save & Close');
+  btnCloseAndSave.dataset.task = dataTask;
 
   divTaskFull.appendChild(divTitleShow);
   divTaskFull.appendChild(divDateShow);
-  divTaskFull.appendChild(divPriorityShow);
   divTaskFull.appendChild(divBtnShowDel);
+  divTaskFull.appendChild(btnCloseAndSave);
 
   return divTaskFull;
 }
@@ -201,10 +154,9 @@ const showFullTask = function showAllTaskInfoWhenClickTaskInList(dataTask, mode)
 const BodyShow = () => {
   const { body } = UI();
 
-  const headBody = document.createElement('header');
-  const mainBody = document.createElement('main');
-  mainBody.classList.add('mainBody');
-  const footerBody = document.createElement('footer');
+  const headBody = createElements('header');
+  const mainBody = createElements('main', '', ['mainBody']);
+  const footerBody = createElements('footer');
 
   // clear body and add new tasks
   while(body.firstChild){
