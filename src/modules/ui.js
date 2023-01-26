@@ -10,7 +10,7 @@ function createEl(type, id, format, elClass){
   return tempInput;
 }
 
-const createElements = function littleHelperForCreatingHtmlElements(type, id, clasS, attrType, textNode, idLbl){
+const createElements = function littleHelperForCreatingHtmlElements(type, id, clasS, attrType, textNode, idLbl, attrValue, attrName){
   const temp = document.createElement(type);
 
   if(id){
@@ -28,6 +28,12 @@ const createElements = function littleHelperForCreatingHtmlElements(type, id, cl
   }
   if(idLbl){
     temp.htmlFor = idLbl;
+  }
+  if(attrValue){
+    temp.setAttribute('value', attrValue);
+  }
+  if(attrName){
+    temp.setAttribute('name', attrName);
   }
 
   return temp;
@@ -57,27 +63,24 @@ function btnCreator(id, text, /* btnClass */){
 
 const userForm = () => {
 
-  const divFullScreen = createElements('div', '', ['fullScreenDiv'], '', '');
+  const divFullScreen = createElements('div', '', ['fullScreenDiv']);
 
-  const form = createElements('form', 'formTask', '', '' ,'')
+  const form = createElements('form', 'formTask')
 
   const labelInputTitle = createElements('label', '', '', '', 'Task', 'inputTitle');
-  const inputTitle = createElements('input', 'inputTitle', '', 'text', '', '');
+  const inputTitle = createElements('input', 'inputTitle', '', 'text');
 
   form.appendChild(labelInputTitle);
   form.appendChild(inputTitle);
 
-  const inputDescription = createEl('text','inputDescription', 'input');
-  const lblDescription = labelCreator('inputDescription', 'Description: ');
-
-  form.appendChild(labelInputTitle);
-  form.appendChild(inputTitle);
+  const inputDescription = createElements('input', 'inputDescription', '', 'text');
+  const lblDescription = createElements('label', '', '', '', 'Description', 'inputDescription');
 
   form.appendChild(lblDescription);
   form.appendChild(inputDescription);
 
-  const inputDate = createEl('date', 'inputDate', 'input');
-  const labelInputDate = labelCreator('inputDate', 'Due: ');
+  const inputDate = createElements('input', 'inputDate', '', 'date');
+  const labelInputDate = createElements('label', '', '', '', 'Due', 'inputDate');
 
   form.appendChild(labelInputDate);
   form.appendChild(inputDate);
@@ -101,20 +104,13 @@ const userForm = () => {
   form.appendChild(inputPriorityLabel);
   form.appendChild(inputPriority);
  */
-
-  const labelInputCheck = labelCreator('checkBox', 'Highlight: ');
-  const checkBox = document.createElement('input');
-  checkBox.setAttribute('type', 'checkbox');
-  checkBox.classList.add(`checkBox`);
-  checkBox.setAttribute('id', 'inputPriority');
-  checkBox.setAttribute('value', 'true');
-  checkBox.setAttribute('name', 'highlight');
+  const labelInputCheck = createElements('label', '', '', '', 'Highlight', 'checkBox');
+  const checkBox = createElements('input', 'inputPriority', ['checkBox'], 'checkbox', '', '', 'true', 'highlight');
 
   labelInputCheck.appendChild(checkBox)
   form.appendChild(labelInputCheck);
-
-  const btnFormSave = btnCreator('btnFormSave', 'Save');
-  const btnFormCancel = btnCreator('btnFormCancel', 'Cancel');
+  const btnFormSave = createElements('button', 'btnFormSave', '', '', 'Save');
+  const btnFormCancel = createElements('button', 'btnFormCancel', '', '', 'Cancel');
 
   form.appendChild(btnFormSave);
   form.appendChild(btnFormCancel);
